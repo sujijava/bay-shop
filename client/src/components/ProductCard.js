@@ -8,7 +8,9 @@ const ProductCard = (product) => {
   const addToCart = (product) => {
     console.log(`${product.title} is added`)
     console.log(product)
-    axios.post('/lists/', product).then((res) => console.log(res.data))
+    axios
+      .post('http://localhost:5000/server/cart', product)
+      .then((res) => console.log(res.data))
   }
 
   return (

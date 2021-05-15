@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ProductCard from './ProductCard'
 import { Alert } from 'react-bootstrap'
+import { Form, FormControl, Button, Row, Container, Col } from 'react-bootstrap'
 
 const Search = () => {
   const [Term, setTerm] = useState('')
@@ -52,28 +53,38 @@ const Search = () => {
   )
 
   return (
-    <div class='search_container '>
-      <div class='input-group header_search_container row'>
-        <div class='form-outline'>
-          <input
-            type='search'
-            id='form1'
-            class='form-control'
-            value={Term}
-            onChange={(e) => setTerm(e.target.value)}
-          />
-        </div>
-        <button
-          onClick={() => performSearch()}
-          type='button'
-          class='btn btn-primary'
+    <>
+      <Row>
+        <Col
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: '7%',
+          }}
         >
-          <i class='fas fa-search'></i>
-        </button>
-      </div>
+          <Form inline>
+            <FormControl
+              type='text'
+              placeholder='Search'
+              className='mr-sm-2'
+              value={Term}
+              onChange={(e) => setTerm(e.target.value)}
+            />
+            <Button variant='outline-success' onClick={() => performSearch()}>
+              Search <i class='fas fa-search'></i>
+            </Button>
+          </Form>
+        </Col>
+      </Row>
 
-      <div>{searchResults.length != 0 ? renderedResults : ''}</div>
-    </div>
+      <Row>
+        <Col style={{ marginTop: '7%' }}>
+          <Container style={{ display: 'flex', flexWrap: 'wrap' }}>
+            {searchResults.length != 0 ? renderedResults : ''}
+          </Container>
+        </Col>
+      </Row>
+    </>
   )
 }
 

@@ -1,8 +1,17 @@
 import React from 'react'
+import { Button } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
+import axios from 'axios'
 
 export default function CartProductCard({ eachProduct }) {
-  const deleteMyList = () => {
-    console.log('delete clicked')
+  let history = useHistory()
+
+  const deleteProduct = (product) => {
+    console.log(product.Title)
+
+    axios.delete('http://localhost:5000/server/cart/' + product._id)
+
+    history.go(0)
   }
 
   return (
@@ -15,29 +24,18 @@ export default function CartProductCard({ eachProduct }) {
         style={{ maxWidth: '30%' }}
       >
         <span class='font-weight-bold'>{eachProduct.Title}</span>
-        <div class='d-flex flex-row product-desc'>
-          {/* <div class='size mr-1'>
-          <span class='text-grey'>Size:</span>
-          <span class='font-weight-bold'>&nbsp;M</span>
-        </div>
-        <div class='color'>
-          <span class='text-grey'>Color:</span>
-          <span class='font-weight-bold'>&nbsp;Grey</span>
-        </div> */}
-        </div>
+        <div class='d-flex flex-row product-desc'></div>
       </div>
-      {/* <div class='d-flex flex-row align-items-center qty'>
-      <i class='fa fa-minus text-danger'></i>
-      <h5 class='text-grey mt-1 mr-1 ml-1'>2</h5>
-      <i class='fa fa-plus text-success'></i>
-    </div> */}
       <div>
-        <h5 class='text-grey'>{eachProduct.Price}</h5>
+        <h5 class='text-grey'>${eachProduct.Price}</h5>
+      </div>
+      <div>
+        <h5 class='text-grey'>Qty: {eachProduct.Qty}</h5>
       </div>
       <div class='d-flex align-items-center'>
-        <a onClick={() => deleteMyList(eachProduct)}>
+        <Button variant='light' onClick={() => deleteProduct(eachProduct)}>
           <i class='fa fa-trash mb-1 text-danger'></i>
-        </a>
+        </Button>
       </div>
     </div>
   )

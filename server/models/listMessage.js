@@ -5,8 +5,8 @@ const listSchema = mongoose.Schema({
   Title: String,
   Price: Number,
   Category: String,
-  Description: String,
   Image: String,
+  Qty: Number,
 })
 
 var ListMessage = mongoose.model('ListMessage', listSchema)

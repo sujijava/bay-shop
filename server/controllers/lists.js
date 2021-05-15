@@ -28,6 +28,19 @@ export const addList = async (req, res) => {
   const Category = req.body.category
   const Description = req.body.description
   const Image = req.body.image
+  let Qty = 1
+
+  const existingProductArr = await ListMessage.find({ Id: req.body.id })
+  // console.log(existingProductArr)
+
+  if (existingProductArr.length !== 0) {
+    console.log(existingProductArr[0]._id)
+    const deleted = await ListMessage.findByIdAndDelete(
+      existingProductArr[0]._id
+    )
+
+    Qty = existingProductArr[0].Qty + 1
+  }
 
   const newListMessage = new ListMessage({
     Id,
@@ -36,6 +49,7 @@ export const addList = async (req, res) => {
     Category,
     Description,
     Image,
+    Qty,
   })
 
   newListMessage

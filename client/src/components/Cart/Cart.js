@@ -8,20 +8,6 @@ export default class Cart extends Component {
     this.state = { myList: [], myTotal: 0 }
   }
 
-  deleteMyList = (product) => {
-    console.log('will be delete' + product._id)
-    axios.delete('http://localhost:5000/server/cart' + product._id)
-    const newList = this.state.myList.filter(
-      (product) => product._id !== product._id
-    )
-    this.setState({ myList: newList })
-    let tempTotal = this.state.myList.reduce(function (prev, cur) {
-      return prev + cur.Price
-    }, 0)
-    console.log(tempTotal)
-    this.setState({ myTotal: tempTotal.toFixed(2) })
-  }
-
   componentDidMount() {
     axios.get('http://localhost:5000/server/cart').then((response) => {
       this.setState({ myList: response.data })
@@ -52,14 +38,6 @@ export default class Cart extends Component {
               <div>
                 <p>Total: {this.state.myTotal}</p>
               </div>
-              {/* <input
-                type='text'
-                class='form-control border-0 gift-card'
-                placeholder='discount code/gift card'
-              />
-              <button class='btn btn-primary btn-sm ml-2' type='button'>
-                Apply
-              </button> */}
             </div>
             <div class='d-flex flex-row align-items-center mt-3 p-2 bg-white rounded'>
               <button
