@@ -9,7 +9,7 @@ export default function CartProductCard({ eachProduct }) {
   const deleteProduct = (product) => {
     console.log(product.Title)
 
-    axios.delete('http://localhost:5000/server/cart/' + product._id)
+    axios.delete('/server/cart/' + product._id)
 
     history.go(0)
   }

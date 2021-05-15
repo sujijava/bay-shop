@@ -9,7 +9,7 @@ export default class Cart extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/server/cart').then((response) => {
+    axios.get('/server/cart').then((response) => {
       this.setState({ myList: response.data })
       console.log(response.data)
       let tempTotal = this.state.myList.reduce(function (prev, cur) {
