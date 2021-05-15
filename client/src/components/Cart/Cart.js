@@ -10,7 +10,7 @@ export default class Cart extends Component {
 
   deleteMyList = (product) => {
     console.log('will be delete' + product._id)
-    axios.delete('/lists/' + product._id)
+    axios.delete('http://localhost:5000/server/cart' + product._id)
     const newList = this.state.myList.filter(
       (product) => product._id !== product._id
     )
@@ -23,7 +23,7 @@ export default class Cart extends Component {
   }
 
   componentDidMount() {
-    axios.get('/lists/').then((response) => {
+    axios.get('http://localhost:5000/server/cart').then((response) => {
       this.setState({ myList: response.data })
       console.log(response.data)
       let tempTotal = this.state.myList.reduce(function (prev, cur) {

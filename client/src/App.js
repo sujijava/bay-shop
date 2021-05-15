@@ -18,6 +18,7 @@ import Cart from './components/Cart/Cart'
 
 import ProductDetail from './components/ProductDetail'
 import SearchResult from './components/SearchResult'
+import Search from './components/Search'
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
         <Route path='/sign_up' component={SignUp}></Route>
         <Route path='/cart' component={Cart}></Route>
         <Route path='/product/:productId' component={ProductDetail}></Route>
+        <Route path='/search' component={Search}></Route>
         <Route
           path='/search_result/:searchTerm'
           component={SearchResult}
